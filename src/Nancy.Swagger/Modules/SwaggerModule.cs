@@ -16,7 +16,7 @@ namespace Nancy.Swagger.Modules
 
     public class RootDocModuleTemplate : NancyModule {
         public RootDocModuleTemplate() {
-            Get["ROOTDOC", "/ROOTDOC"] = _ => "ROOTDOC";
+            Get["ROOTDOC", "/ROOTDOC"] = _ => "";
         }
     };
 }
