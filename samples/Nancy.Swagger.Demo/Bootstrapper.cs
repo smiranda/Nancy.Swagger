@@ -6,7 +6,8 @@ namespace Nancy.Swagger.Demo
     {
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
-            nancyConventions.StaticContentsConventions.AddDirectory("docs", "swagger-ui");
+            nancyConventions.StaticContentsConventions.AddDirectory("swagger-ui-content");
+            StaticConfiguration.DisableErrorTraces = false;
         }
     }
 }

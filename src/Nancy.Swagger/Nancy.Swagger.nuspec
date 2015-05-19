@@ -14,8 +14,9 @@
     <copyright>Copyright © Kristian Hellang 2014</copyright>
     <tags>Nancy Swagger</tags>
     <dependencies>
-	  <dependency id="Nancy" version="0.23.0" />
-	  <dependency id="Swagger.ObjectModel" version="$version$" />
+	  <dependency id="Nancy" version="1.2.0" />
+	  <dependency id="Nancy.Metadata.Modules" version="1.2.0" />
+	  <dependency id="Swagger.ObjectModel" version="1.0.0.0" />
     </dependencies>
   </metadata>
 </package>

@@ -1,8 +1,64 @@
 ﻿using Nancy.ModelBinding;
 using Nancy.Swagger.Demo.Models;
+using Nancy.Swagger.Modules;
+using Nancy.Swagger.Swagger2;
+using Swagger.ObjectModel.ApiDeclaration;
+using System;
 
 namespace Nancy.Swagger.Demo.Modules
 {
+    [ApiDoc(
+        Title="NancySwagger2 Demo",
+        Description="Proof of concept",
+        Version="1.0.0",
+        Host="localhost",
+        basePath="/NancySwagger2",
+        schemes=new string[]{"http"})]
+    public class RootDocMetadataModule : RootDataProvider { };
+    public class RootDocModule : RootDocModuleTemplate { };
+
+    [RouteDoc("GetUsers",
+        Description="Gets the users of this system",
+        Tag="User Management"),
+        ParamDoc("GetUsers",
+            Name="Counter",
+            Description="Counting facility",
+            Required=true,
+            In=ParameterType.Path,
+            Type="integer",
+            Format="int32"),
+        ResponseDoc("GetUsers",
+            Code = "200",
+            Model= "User",
+            Description= "Requested user"),
+        ResponseDoc("GetUsers",
+            Code = "500",
+            Model = "User",
+            Description = "Requested user, deformed")
+    ]
+    [RouteDoc("PostUsers",
+       Description = "Posts a user",
+       Tag = "User Management"),
+       ParamDoc("PostUsers",
+           Name = "Counter",
+           Description = "Counting facility",
+           Required = true,
+           In = ParameterType.Path,
+           Type = "integer",
+           Format = "int32"),
+       ParamDoc("PostUsers",
+           Name = "User",
+           Description = "Provided User",
+           Required = true,
+           In = ParameterType.Body,
+           Type = "User"),
+       ResponseDoc("PostUsers",
+           Code = "200",
+           Model = "User",
+           Description = "Posted user echo")
+    ]
+    public class HomeMetadataModule : MetaDataProvider { };
+
     public class HomeModule : NancyModule
     {
         public HomeModule()
@@ -10,8 +66,9 @@ namespace Nancy.Swagger.Demo.Modules
             Get["Home", "/"] = _ => "Hello Swagger!";
 
             Get["GetUsers", "/users"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
+            Get["GetUsers2", "/users2"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
 
-            Post["PostUsers", "/users"] = _ =>
+            Post["PostUsers", "/usersP"] = _ =>
             {
                 var result = this.BindAndValidate<User>();
 

@@ -18,7 +18,7 @@ namespace Nancy.Swagger.Tests
             }.ToModelProperty().ShouldEqual(
                 new ModelProperty
                 {
-                    Ref = SwaggerConfig.ModelIdConvention(typeof(TestModel))
+                    Ref = "#/definitions/" +  SwaggerConfig.ModelIdConvention(typeof(TestModel))
                 }
             );
         }
@@ -62,7 +62,7 @@ namespace Nancy.Swagger.Tests
                 new ModelProperty
                 {
                     Type = "array",
-                    Items = new Items { Ref = SwaggerConfig.ModelIdConvention(typeof(TestModel)) }
+                    Items = new Items { Ref = "#/definitions/" +  SwaggerConfig.ModelIdConvention(typeof(TestModel)) }
                 },
                 "String return type"
             );
@@ -98,7 +98,7 @@ namespace Nancy.Swagger.Tests
                     Method = HttpMethod.Get,
                     Nickname = "get",
                     Type = "array",
-                    Items = new Items { Ref = SwaggerConfig.ModelIdConvention(typeof(TestModel)) },
+                    Items = new Items { Ref = "#/definitions/" +  SwaggerConfig.ModelIdConvention(typeof(TestModel)) },
                     Parameters = Enumerable.Empty<Parameter>()
                 },
                 "String return type"

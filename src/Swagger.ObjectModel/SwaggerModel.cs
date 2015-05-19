@@ -59,11 +59,22 @@ namespace Swagger.ObjectModel
                         continue;
                     }
 
-                    var dictionary = value as IDictionary;
-                    if (dictionary != null)
-                    {
-                        value = ToObject(dictionary);
+                    Dictionary<string, IDictionary> dictionary_of_dicts;
+                    try {
+                        dictionary_of_dicts = (Dictionary<string, IDictionary>) value;
+                    } catch {
+                        dictionary_of_dicts = null;
                     }
+                    
+                    if (dictionary_of_dicts != null) {
+                        value = ToObject_deeplvl2(dictionary_of_dicts);
+                    } else {
+                        var dictionary = value as IDictionary;
+                        if (dictionary != null) {
+                            value = ToObject(dictionary);
+                        }
+                    }
+              
 
                     var fieldName = MapClrMemberNameToJsonFieldName(getter.Key);
 
@@ -110,6 +121,19 @@ namespace Swagger.ObjectModel
                 foreach (string key in source.Keys)
                 {
                     expandoCollection.Add(new KeyValuePair<string, object>(key, source[key]));
+                }
+
+                return expando;
+            }
+
+            private static dynamic ToObject_deeplvl2(Dictionary<string, IDictionary> source) {
+
+                var expando = new ExpandoObject();
+                var expandoCollection = (ICollection<KeyValuePair<string, object>>)expando;
+
+                foreach (string key in source.Keys) {
+                    var nested = ToObject(source[key]);
+                    expandoCollection.Add(new KeyValuePair<string, object>(key, nested));
                 }
 
                 return expando;

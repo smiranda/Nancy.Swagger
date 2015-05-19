@@ -11,3 +11,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("61e06a51-5890-4ffe-a7cc-388a09b32b05")]
 
 [assembly: InternalsVisibleTo("Swagger.ObjectModel.Tests")]
+[assembly: InternalsVisibleTo("Swagger2")]
+[assembly: InternalsVisibleTo("Nancy.Swagger.Swagger2")]

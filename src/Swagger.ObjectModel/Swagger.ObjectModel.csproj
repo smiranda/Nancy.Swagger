@@ -20,7 +20,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SIMPLE_JSON_INTERNAL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
     <DocumentationFile>bin\Debug\Swagger.ObjectModel.XML</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
@@ -79,6 +79,13 @@
     <Compile Include="ResourceListing\TokenEndpoint.cs" />
     <Compile Include="ResourceListing\TokenRequestEndpoint.cs" />
     <Compile Include="SimpleJson.cs" />
+    <Compile Include="Swagger2\ApiDocumentation.cs" />
+    <Compile Include="Swagger2\ResponseObject.cs" />
+    <Compile Include="Swagger2\RootDocumentation.cs" />
+    <Compile Include="Swagger2\RootInfo.cs" />
+    <Compile Include="Swagger2\RouteOperation.cs" />
+    <Compile Include="Swagger2\RouteParameter.cs" />
+    <Compile Include="Swagger2\SchemaObject.cs" />
     <Compile Include="SwaggerModel.cs" />
   </ItemGroup>
   <ItemGroup>

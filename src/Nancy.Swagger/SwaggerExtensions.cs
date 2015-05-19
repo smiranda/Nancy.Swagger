@@ -1,6 +1,8 @@
 ﻿using Nancy.Routing;
+using Nancy.Swagger.Swagger2;
 using Swagger.ObjectModel;
 using Swagger.ObjectModel.ApiDeclaration;
+using Swagger.ObjectModel.Swagger2;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +26,13 @@ namespace Nancy.Swagger
 
             action.Invoke(builder);
 
+            return builder.Data;
+        }
+
+        public static RouteOperation AsSwagger2(this RouteDescription desc, Action<V2SwaggerRouteDataBuilder> action)
+        {
+            var builder = new V2SwaggerRouteDataBuilder(desc.Name, /*Convert(*/ desc.Method /*)*/, desc.Path);
+            action.Invoke(builder);
             return builder.Data;
         }
 
@@ -118,14 +127,14 @@ namespace Nancy.Swagger
                     return dataType;
                 }
 
-                dataType.Items = new Items { Ref = SwaggerConfig.ModelIdConvention(itemsType) };
+                dataType.Items = new Items { Ref = "#/definitions/" + SwaggerConfig.ModelIdConvention(itemsType) };
 
                 return dataType;
             }
 
             if (isTopLevel)
             {
-                dataType.Ref = SwaggerConfig.ModelIdConvention(type);
+                dataType.Ref = "#/definitions/" +  SwaggerConfig.ModelIdConvention(type);
                 return dataType;
             }
 

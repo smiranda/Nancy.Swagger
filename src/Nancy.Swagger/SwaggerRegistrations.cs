@@ -1,5 +1,6 @@
 ﻿using Nancy.Bootstrapper;
 using Nancy.Swagger.Services;
+using Nancy.Swagger.Swagger2;
 
 namespace Nancy.Swagger
 {
@@ -8,8 +9,12 @@ namespace Nancy.Swagger
     {
         public SwaggerRegistrations()
         {
-            RegisterWithDefault<ISwaggerMetadataProvider>(typeof(DefaultSwaggerMetadataProvider));
-            RegisterWithDefault<ISwaggerMetadataConverter>(typeof(DefaultSwaggerMetadataConverter));
+            //RegisterWithDefault<ISwaggerMetadataProvider>(typeof(DefaultSwaggerMetadataProvider));
+            //RegisterWithDefault<ISwaggerMetadataConverter>(typeof(DefaultSwaggerMetadataConverter));
+
+            RegisterWithDefault<IV2SwaggerMetadataProvider>(typeof(V2SwaggerMetadataProvider));
+            RegisterWithDefault<IV2SwaggerMetadataConverter>(typeof(V2SwaggerMetadataConverter));
+
             RegisterWithDefault<ISwaggerModelCatalog>(typeof(DefaultSwaggerModelCatalog));
             RegisterAll<ISwaggerModelDataProvider>();
         }

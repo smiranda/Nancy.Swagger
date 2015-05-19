@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nancy.Swagger</RootNamespace>
-    <AssemblyName>Nancy.Swagger</AssemblyName>
+    <AssemblyName>Nancy.Swagger2</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>1da1a2d7</NuGetPackageImportStamp>
@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Nancy.Swagger.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Nancy.Swagger2.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations">
@@ -41,6 +41,10 @@
     <Reference Include="Nancy, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Metadata.Modules, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nancy.Metadata.Modules.1.2.0\lib\net40\Nancy.Metadata.Modules.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,14 +56,21 @@
     </Compile>
     <Compile Include="ISwaggerModelCatalog.cs" />
     <Compile Include="Services\DefaultSwaggerModelCatalog.cs" />
+    <Compile Include="Services\ISwaggerMetadataConverter.cs" />
     <Compile Include="Services\ISwaggerMetadataProvider.cs" />
     <Compile Include="Services\ISwaggerModelDataProvider.cs" />
     <Compile Include="Services\DefaultSwaggerMetadataConverter.cs" />
     <Compile Include="Services\DefaultSwaggerMetadataProvider.cs" />
-    <Compile Include="Services\ISwaggerMetadataConverter.cs" />
+    <Compile Include="Swagger2\AttrNancySwagger.cs" />
+    <Compile Include="Swagger2\V2AbsSwaggerMetadataProvider.cs" />
+    <Compile Include="Swagger2\IV2SwaggerMetadataProvider.cs" />
+    <Compile Include="Swagger2\IV2SwaggerMetadataConverter.cs" />
     <Compile Include="Modules\SwaggerModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SwaggerMetadataProvider.cs" />
+    <Compile Include="Swagger2\V2SwaggerDataBuilder.cs" />
+    <Compile Include="Swagger2\V2SwaggerMetadataConverter.cs" />
+    <Compile Include="Swagger2\V2SwaggerMetadataProvider.cs" />
     <Compile Include="SwaggerApiAttribute.cs" />
     <Compile Include="SwaggerModelDataBuilder.cs" />
     <Compile Include="SwaggerModelPropertyDataBuilder.cs" />
