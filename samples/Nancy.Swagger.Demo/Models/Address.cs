@@ -5,7 +5,7 @@ namespace Nancy.Swagger.Demo.Models
     public class Address : ModelDocProvider<Address>
     {
 
-        [PropertyDoc("First address line", Required = true)]
+        [PropertyDoc(0, "First address line", Required = true)]
         public string Address1 { get; set; }
 
         public string Town { get; set; }

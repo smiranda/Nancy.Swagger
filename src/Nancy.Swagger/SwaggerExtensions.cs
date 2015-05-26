@@ -226,8 +226,11 @@ namespace Nancy.Swagger
                         .ToList();
 
                 var modelproperties = modelDataForClassProperty == null
-                    ? properties.OrderBy(x => x.Name).ToDictionary(p => p.Name, ToModelProperty)
-                    : modelDataForClassProperty.Properties.OrderBy(x => x.Name)
+                    ? properties
+                        .OrderBy(x => x.Name)
+                        .ToDictionary(p => p.Name, ToModelProperty)
+                    : modelDataForClassProperty.Properties
+                        .OrderBy(x => x.Name)
                         .ToDictionary(p => p.Name, ToModelProperty);
 
                 yield return new Model
@@ -246,10 +249,10 @@ namespace Nancy.Swagger
                 Required = model.Properties
                     .Where(p => p.Required || p.Type.IsImplicitlyRequired())
                     .Select(p => p.Name)
-                    .OrderBy(name => name)
+                    //.OrderBy(name => name)
                     .ToList(),
                 Properties = model.Properties
-                    .OrderBy(p => p.Name)
+                    //.OrderBy(p => p.Name)
                     .ToDictionary(p => p.Name, ToModelProperty)
 
                 // TODO: SubTypes and Discriminator
