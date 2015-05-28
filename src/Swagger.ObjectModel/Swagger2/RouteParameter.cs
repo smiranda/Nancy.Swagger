@@ -3,6 +3,7 @@
     using Swagger.ObjectModel.ApiDeclaration;
     using Swagger.ObjectModel.Attributes;
     using System;
+    using System.Collections;
 
     public class RouteParameter : SwaggerModel {
 
@@ -28,5 +29,8 @@
         // In case In is body
         [SwaggerProperty("schema", true)]
         public SchemaObject Schema { get; set; }
+
+        [SwaggerProperty("enum", false)]
+        public IList Enum { get; set; }
     }
 }

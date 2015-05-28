@@ -109,6 +109,10 @@ namespace Nancy.Swagger.Swagger2 {
         public string Format { get { return this.FormatProperty; } set { this.FormatProperty = value; } }
         public bool FormatHasValue { get { return this.FormatProperty != null; } }
 
+        private object[] EnumValuesProperty = null;
+        public object[] EnumValues { get { return this.EnumValuesProperty; } set { this.EnumValuesProperty = value; } }
+        public bool EnumValuesHasValue { get { return this.EnumValuesProperty != null; } }
+
         public uint Index;
         public ParamDoc(uint index, string OperationRef_)
             : base(OperationRef_) {
@@ -262,6 +266,7 @@ namespace Nancy.Swagger.Swagger2 {
                     foreach (ParamDoc attr_entry_param in ordered_list) {
                         with.Parameter(
                             attr_entry_param.In, attr_entry_param.Type, attr_entry_param.Name,
+                            attr_entry_param.EnumValuesHasValue ? attr_entry_param.EnumValues : null,
                             attr_entry_param.Description, attr_entry_param.Format, attr_entry_param.Required);
                     }
 

@@ -2,6 +2,7 @@
 using Swagger.ObjectModel.ApiDeclaration;
 using Swagger.ObjectModel.Swagger2;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Nancy.Swagger.Swagger2 {
@@ -71,6 +72,7 @@ namespace Nancy.Swagger.Swagger2 {
             ParameterType parameter_in,
             string type,
             string name,
+            object[] enum_values = null,
             string description = null,
             string format = null,
             bool required = false) {
@@ -88,12 +90,21 @@ namespace Nancy.Swagger.Swagger2 {
                     }
                 };
             } else {
+
+                IList enum_list = null;
+                if (enum_values != null){
+                    enum_list = new List<object> ();
+                    foreach (object o in enum_values)
+                        enum_list.Add(o);
+                }
+
                 param = new RouteParameter {
                     Name = name,
                     In = parameter_in,
                     Description = description,
                     Required = required,
                     Type = type,
+                    Enum = enum_list,
                     Format = format
                 };
             }

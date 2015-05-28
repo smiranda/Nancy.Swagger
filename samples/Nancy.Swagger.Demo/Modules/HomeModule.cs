@@ -121,6 +121,7 @@ namespace Nancy.Swagger.Demo.Modules
            Required = true,
            In = ParameterType.Path,
            Type = "integer",
+           EnumValues = new object[]{1,2},
            Format = "int32"),
        ParamDoc(1, "PostUsers",
            Name = "User",
