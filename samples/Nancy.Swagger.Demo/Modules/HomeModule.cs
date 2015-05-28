@@ -65,6 +65,53 @@ namespace Nancy.Swagger.Demo.Modules
             Model = "User",
             Description = "Requested user, deformed")
     ]
+    [RouteDoc("PostUsersGet",
+        Description = "Gets the users of this system",
+        Tag = "User Management"),
+        ParamDoc(0, "PostUsersGet",
+            Name = "Counter0",
+            Description = "Counting facility",
+            Required = true,
+            In = ParameterType.Path,
+            Type = "integer",
+            Format = "int32"),
+        ParamDoc(1, "PostUsersGet",
+            Name = "Counter1",
+            Description = "Counting facility",
+            Required = true,
+            In = ParameterType.Path,
+            Type = "integer",
+            Format = "int32"),
+        ParamDoc(2, "PostUsersGet",
+            Name = "Counter2",
+            Description = "Counting facility",
+            Required = true,
+            In = ParameterType.Path,
+            Type = "integer",
+            Format = "int32"),
+        ParamDoc(3, "PostUsersGet",
+            Name = "Counter3",
+            Description = "Counting facility",
+            Required = true,
+            In = ParameterType.Path,
+            Type = "integer",
+            Format = "int32"),
+        ParamDoc(4, "PostUsersGet",
+            Name = "Counter4",
+            Description = "Counting facility",
+            Required = true,
+            In = ParameterType.Path,
+            Type = "integer",
+            Format = "int32"),
+        ResponseDoc("PostUsersGet",
+            Code = "200",
+            Model = "User",
+            Description = "Requested user"),
+        ResponseDoc("PostUsersGet",
+            Code = "500",
+            Model = "User",
+            Description = "Requested user, deformed")
+    ]
     [RouteDoc("PostUsers",
        Description = "Posts a user",
        Tag = "User Management"),
@@ -95,6 +142,8 @@ namespace Nancy.Swagger.Demo.Modules
             Get["Home", "/"] = _ => "Hello Swagger!";
 
             Get["GetUsers", "/users"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
+            Post["PostUsersGet", "/users"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
+            
             Get["GetUsers2", "/users2"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
 
             Post["PostUsers", "/usersP"] = _ =>

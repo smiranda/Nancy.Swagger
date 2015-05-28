@@ -24,11 +24,24 @@ namespace Nancy.Swagger.Swagger2
         public override IDictionary<string, IDictionary>
             RetrieveSwaggerRouteData()
         {
-            return _routeCacheProvider
-                .GetCache()
-                .RetrieveMetadata<RouteOperation>()
-                .OfType<RouteOperation>()
-                .ToDictionary(x => x.Path)
+            var metadata = _routeCacheProvider
+                            .GetCache()
+                            .RetrieveMetadata<RouteOperation>()
+                            .OfType<RouteOperation>();
+            
+            IDictionary <string, RouteOperation> metadict =
+                new Dictionary<string, RouteOperation>();
+            
+            foreach (var e in metadata) {
+                if (!metadict.Keys.Contains(e.Path)) {
+                    metadict.Add(e.Path, e);
+                } else {
+                    foreach(var method in (Dictionary<string, RouteOperationModel>)e.Operations)
+                        metadict[e.Path].Operations.Add(method.Key, method.Value);
+                }
+            }
+
+            return metadict
                 .Select(r => Tuple.Create(r.Value.Path, r.Value.Operations))
                 .ToDictionary(x => x.Item1, x => x.Item2);
         }
