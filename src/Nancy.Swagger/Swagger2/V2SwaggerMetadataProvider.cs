@@ -36,8 +36,10 @@ namespace Nancy.Swagger.Swagger2
                 if (!metadict.Keys.Contains(e.Path)) {
                     metadict.Add(e.Path, e);
                 } else {
-                    foreach(var method in (Dictionary<string, RouteOperationModel>)e.Operations)
-                        metadict[e.Path].Operations.Add(method.Key, method.Value);
+                    foreach (var method in (Dictionary<string, RouteOperationModel>)e.Operations) {
+                        if (!metadict[e.Path].Operations.Contains(method.Key))                        
+                            metadict[e.Path].Operations.Add(method.Key, method.Value);
+                    }
                 }
             }
 

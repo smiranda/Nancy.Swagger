@@ -141,8 +141,8 @@ namespace Nancy.Swagger.Demo.Modules
         {
             Get["Home", "/"] = _ => "Hello Swagger!";
 
-            Get["GetUsers", "/users"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
-            Post["PostUsersGet", "/users"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
+            Get["GetUsers", "/users/{p0}"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
+            Post["PostUsersGet", "/users/{p0}"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
             
             Get["GetUsers2", "/users2"] = _ => new[] { new User { Name = "Vincent Vega", Age = 45 } };
 
