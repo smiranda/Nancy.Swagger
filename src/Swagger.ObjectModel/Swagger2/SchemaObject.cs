@@ -9,4 +9,12 @@ namespace Swagger.ObjectModel.Swagger2 {
         [SwaggerProperty("$ref", true)]
         public string Ref {get; set;}
     }
+
+    public class SchemaList : SwaggerModel {
+        [SwaggerProperty("type", true)]
+        public string Type { get; set; }
+
+        [SwaggerProperty("items", true)]
+        public SchemaObject Items { get; set; }
+    }
 }

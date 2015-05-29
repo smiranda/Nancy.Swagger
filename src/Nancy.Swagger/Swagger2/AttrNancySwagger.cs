@@ -129,6 +129,10 @@ namespace Nancy.Swagger.Swagger2 {
         public string Model { get { return this.ModelProperty; } set { this.ModelProperty = value; } }
         public bool ModelHasValue { get { return this.ModelProperty != null; } }
 
+        private bool? IsArrayProperty = null;
+        public bool IsArray { get { return this.IsArrayProperty.GetValueOrDefault(); } set { this.IsArrayProperty = value; } }
+        public bool IsArrayHasValue { get { return this.IsArrayProperty != null; } }
+
         public string Code { get; set; }
 
         public ResponseDoc(string OperationRef_)
@@ -253,7 +257,7 @@ namespace Nancy.Swagger.Swagger2 {
 
                         if (attr_entry is ResponseDoc) {
                             ResponseDoc attr_entry_model = (ResponseDoc)attr_entry;
-                            with.Response(attr_entry_model.Code, attr_entry_model.Model, attr_entry_model.Description);
+                            with.Response(attr_entry_model.Code, attr_entry_model.Model, attr_entry_model.IsArrayHasValue ? attr_entry_model.IsArray : false, attr_entry_model.Description);
                         }
 
                         if (attr_entry is ParamDoc) {

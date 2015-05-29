@@ -132,6 +132,7 @@ namespace Nancy.Swagger.Demo.Modules
        ResponseDoc("PostUsers",
            Code = "200",
            Model = "User",
+           IsArray = true,
            Description = "Posted user echo")
     ]
     public class HomeMetadataModule : MetaDataProvider { };

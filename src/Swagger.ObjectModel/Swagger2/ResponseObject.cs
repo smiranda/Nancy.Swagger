@@ -12,6 +12,6 @@ namespace Swagger.ObjectModel.Swagger2 {
         public string Description { get; set; }
 
         [SwaggerProperty("schema", true)]
-        public SchemaObject Schema { get; set; }
+        public dynamic Schema { get; set; }
     }
 }

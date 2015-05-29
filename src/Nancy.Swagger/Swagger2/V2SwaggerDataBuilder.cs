@@ -40,16 +40,27 @@ namespace Nancy.Swagger.Swagger2 {
             return this;
         }
 
-        public V2SwaggerRouteDataBuilder Response(string code, string response_model, string description = null) {
+        public V2SwaggerRouteDataBuilder Response(string code, string response_model, bool isarray = false, string description = null) {
 
             description = description ?? Enum.GetName(typeof(HttpStatusCode), Convert.ToInt32(code));
 
-            var response_object = new ResponseObject {
-                Description = description,
-                Schema = new SchemaObject {
-                    Ref = "#/definitions/" + response_model
-                }
+            var obj =  new SchemaObject {
+                Ref = "#/definitions/" + response_model
             };
+
+            ResponseObject response_object;
+            if (isarray) {
+                response_object = new ResponseObject {
+                    Description = description,
+                    Schema = new SchemaList { Type = "array", Items = obj }
+                };
+            } else {
+                response_object = new ResponseObject {
+                    Description = description,
+                    Schema =  obj
+                };
+            }
+          
 
             IDictionary<string, ResponseObject> responses =
                 ((RouteOperationModel)Data.Operations[CurrentMethod]).Responses;
