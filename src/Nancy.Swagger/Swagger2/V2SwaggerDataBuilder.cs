@@ -96,9 +96,17 @@ namespace Nancy.Swagger.Swagger2 {
                     In = parameter_in,
                     Description = description,
                     Required = required,
-                    Schema = new SchemaObject {
-                        Ref = "#/definitions/" + type
-                    }
+                    Schema = format == null ?
+                        // Its a Model reference
+                        new SchemaObject {
+                            Ref = "#/definitions/" + type
+                        }
+                        :
+                        // Its a Primitive type
+                        new SchemaObject {
+                            Format = format,
+                            Type = type
+                        }
                 };
             } else {
 

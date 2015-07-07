@@ -20,5 +20,8 @@ namespace Nancy.Swagger.Demo.Models {
 
         [PropertyDoc(4, "Address of the  user", Required = false)]
         public Address Address { get; set; }
+
+        [PropertyDoc(5, "Test enum", Required = false, EnumValues=new string[]{"A","B","C"})]
+        public Role UserRole { get; set; }
     }
 }

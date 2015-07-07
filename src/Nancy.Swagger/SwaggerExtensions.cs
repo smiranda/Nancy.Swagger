@@ -132,7 +132,12 @@ namespace Nancy.Swagger
                 return dataType;
             }
 
-            if (isTopLevel)
+            if (type.IsEnum)
+            {
+                dataType.Type = SwaggerConfig.ModelIdConvention(Enum.GetUnderlyingType(type)).ToLower();
+                return dataType;
+            }
+            else if (isTopLevel)
             {
                 dataType.Ref = "#/definitions/" +  SwaggerConfig.ModelIdConvention(type);
                 return dataType;
