@@ -20,7 +20,10 @@ namespace Nancy.Swagger.Demo.Modules
 
     [RouteDoc("GetUsers",
         Description="Gets the users of this system",
-        Tag="User Management"),
+        Tag="User Management",
+        Produces = new string[] { "application/json", "text/plain; charset=utf-8" },
+        Consumes = new string[] { "text/xml" }
+        ),
         ParamDoc(0, "GetUsers",
             Name="Counter0",
             Description="Counting facility",

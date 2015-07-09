@@ -78,6 +78,14 @@ namespace Nancy.Swagger.Swagger2 {
         public string Tag { get { return this.TagProperty; } set { this.TagProperty = value; } }
         public bool TagHasValue { get { return this.TagProperty != null; } }
 
+        private string[] ProducesProperty = null;
+        public string[] Produces { get { return this.ProducesProperty; } set { this.ProducesProperty = value; } }
+        public bool ProducesHasValue { get { return this.ProducesProperty != null; } }
+
+        private string[] ConsumesProperty = null;
+        public string[] Consumes { get { return this.ConsumesProperty; } set { this.ConsumesProperty = value; } }
+        public bool ConsumesHasValue { get { return this.ConsumesProperty != null; } }
+
         public RouteDoc(string OperationRef_)
             : base(OperationRef_) {
         }
@@ -251,6 +259,12 @@ namespace Nancy.Swagger.Swagger2 {
 
                             if (attr_entry_route.TagHasValue)
                                 with.Tag(attr_entry_route.Tag);
+
+                            if (attr_entry_route.ConsumesHasValue)
+                                with.Consumes(attr_entry_route.Consumes);
+
+                            if (attr_entry_route.ProducesHasValue)
+                                with.Produces(attr_entry_route.Produces);
 
                             with.Path(description.Path);
                         }

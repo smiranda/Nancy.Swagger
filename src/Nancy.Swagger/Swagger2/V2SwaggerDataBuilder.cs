@@ -35,6 +35,27 @@ namespace Nancy.Swagger.Swagger2 {
             }
             return this;
         }
+
+        public V2SwaggerRouteDataBuilder Produces(string[] produces) {
+            try {
+                ((RouteOperationModel)Data.Operations[CurrentMethod]).Produces = new List<string>(produces);
+            } catch (Exception e) {
+                throw new InvalidOperationException(
+                    "Must call V2SwaggerRouteDataBuilder.Method() before building the route data, currentMethod=" + CurrentMethod, e);
+            }
+            return this;
+        }
+
+        public V2SwaggerRouteDataBuilder Consumes(string[] consumes) {
+            try {
+                ((RouteOperationModel)Data.Operations[CurrentMethod]).Consumes = new List<string>(consumes);
+            } catch (Exception e) {
+                throw new InvalidOperationException(
+                    "Must call V2SwaggerRouteDataBuilder.Method() before building the route data, currentMethod=" + CurrentMethod, e);
+            }
+            return this;
+        }
+
         public V2SwaggerRouteDataBuilder Path(string path) {
             Data.Path = path;
             return this;

@@ -13,19 +13,8 @@
         public IDictionary Operations;
 
         public string Path;
-        //public string Path {
-        //    get {
-        //        return _path;
-        //    }
-        //    set {
-        //        _path = value;
-        //    }
-        //}
+        
         public Type Model { get; set; }
-
-        //public override void GetObjectData(SerializationInfo info, StreamingContext context) {
-        //    base.GetObjectData(info, context);
-        //}
 
         public RouteOperation() {
             Operations = new Dictionary<string, RouteOperationModel>();
@@ -58,6 +47,12 @@
 
         [SwaggerProperty("tags", true)]
         public IList<string> Tags { get; set; }
+
+        [SwaggerProperty("produces", true)]
+        public IList<string> Produces { get; set; }
+
+        [SwaggerProperty("consumes", true)]
+        public IList<string> Consumes { get; set; }
 
         [SwaggerProperty("responses", true)]
         public IDictionary<string, ResponseObject> Responses { get; set; }
