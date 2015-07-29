@@ -196,7 +196,8 @@ namespace Nancy.Swagger.Swagger2 {
 
         public static string ConfigHost;
         public static string ConfigBasePath;
-        public static string[] ConfigSchemes; 
+        public static string[] ConfigSchemes;
+        public static string Version = null;
 
         public RootDataProvider() {
 
@@ -208,12 +209,20 @@ namespace Nancy.Swagger.Swagger2 {
                 foreach (System.Attribute attr in attrs) {
                     if (attr is ApiDoc) {
                         var api_doc = (ApiDoc)attr;
+
+                        var api_version = "0.0.0.0";
+                        if (Version != null) {
+                            api_version = Version;
+                        } else if (api_doc.Version != null) {
+                            api_version = api_doc.Version;
+                        }
+
                         doc = new RootDocumentation {
                             Host = ConfigHost ?? api_doc.Host,
                             rootInfo = new RootInfo {
                                 Title = api_doc.Title,
                                 Description = api_doc.Description,
-                                Version = api_doc.Version
+                                Version = api_version
                             },
                             basePath = ConfigBasePath ?? api_doc.basePath,
                             Schemes = ConfigSchemes ?? api_doc.schemes

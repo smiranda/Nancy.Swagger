@@ -10,7 +10,7 @@ namespace Nancy.Swagger.Demo.Modules
     [ApiDoc(
         Title="NancySwagger2 Demo",
         Description="Proof of concept",
-        Version="1.0.0"
+        Version="1.0.1.1"
         //Host="localhost",
         //basePath="/NancySwagger2",
         //schemes=new string[]{"http"}
